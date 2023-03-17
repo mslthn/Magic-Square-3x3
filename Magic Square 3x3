@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int square[3][3] = {{0,0,0}, {0,0,0}, {0,0,0}};
+    int row, col, num;
+
+    row = 0;
+    col = 1;
+    num = 1;
+    square[row][col] = num;
+
+    // Mencari Magic Square
+    for (int i = 1; i <= 9; i++) {
+        num++;
+        row--;
+        col++;
+        if (row < 0) row = 2;
+        if (col > 2) col = 0;
+        if (square[row][col] != 0) {
+            row++;
+            col--;
+            if (row > 2) row = 0;
+            if (col < 0) col = 2;
+            row++;
+            square[row][col] = num;
+        } else {
+            square[row][col] = num;
+        }
+    }
+    
+    // Menampilkan hasil Magic Square
+    cout << "Magic Square 3x3: " << endl;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout << square[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
